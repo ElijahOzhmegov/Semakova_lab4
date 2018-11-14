@@ -7,23 +7,9 @@
 % ======================================================================
 
 % task 1
-% disp('task one');
-% disp(DHtransform(5,0,3,pi/2));
-
-% task 2
-% disp('task two');
-
 [h1,R1] = RPR_FK(0,   5,  0);
 [h2,R2] = RPR_FK(pi, -10, pi/2);
 
-
-x = h2(end,1);
-y = h2(end,2);
-z = h2(end,3);
-
-[q1, q2, q3] = RPR_IK(x,y,z, R1);
-
-[h3,~] = RPR_FK(q1(2), q2(2), q3(2));
 
 figure('Name','Three dimensional space', ...
        'Position',[400 500 860 640], ...
@@ -47,6 +33,21 @@ view(3)
 
 plot3(h1(:,1), h1(:,2), h1(:,3),'o--'), hold on;
 plot3(h2(:,1), h2(:,2), h2(:,3),'*-');
-plot3(h3(:,1), h3(:,2), h3(:,3));
+
+% task 2 
+
+h = [h1(end,:); h2(end,:)];
+for k=1:2
+    x = h(k,1);
+    y = h(k,2);
+    z = h(k,3);
+    
+    [q1, q2, q3] = RPR_IK(x,y,z, R1);
+    
+    for i=1:length(q1)
+        [h3,~] = RPR_FK(q1(i), q2(i), q3(i));
+        plot3(h3(:,1), h3(:,2), h3(:,3));
+    end
+end
 
 clear maxL

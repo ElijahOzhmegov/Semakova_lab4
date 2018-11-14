@@ -9,7 +9,8 @@ function [q1, q2, q3] = RPR_IK(x,y,z, R03)
 % wrong way 
 % ======================================================================
 
-q1 = theta1(x,y);
 q2 = d2(x,y,z);
+q2 = q2(imag(q2)==0);
 q3 = theta3(q2, x,y,z);
 
+q1 = theta1(q2, x,y);
