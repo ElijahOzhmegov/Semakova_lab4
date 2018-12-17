@@ -12,13 +12,13 @@ function [pos, R03] = RPR_FK(th1, d2, th3)
 % When you read this text, memrise that at first we rotate around  Z axis,
 % but not X axis. It will solve all your problem.
 %
-% In the case, If you forget about this essential rule, hit yourslelf on
+% If you forget about this essential rule, hit yourslelf on
 % your face (gently please).
 % 
 % Best regards,
 % Your Irritation
 % ----------------------------------------------------------------------
-% How to use Denavit?Hartenberg transform function:
+% How to use Denavit-Hartenberg transform function:
 %
 % theta -- around Z
 % alpha -- around X

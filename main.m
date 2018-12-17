@@ -37,17 +37,22 @@ plot3(h2(:,1), h2(:,2), h2(:,3),'*-');
 % task 2 
 
 h = [h1(end,:); h2(end,:)];
-for k=1:2
+h_size = size(h);
+for k=1:h_size(1)
     x = h(k,1);
     y = h(k,2);
     z = h(k,3);
     
     [q1, q2, q3] = RPR_IK(x,y,z, R1);
     
+    fprintf('pos: \t %f %f %f\n', x, y,z);
+    
+    h3 = [];
     for i=1:length(q1)
         [h3,~] = RPR_FK(q1(i), q2(i), q3(i));
         plot3(h3(:,1), h3(:,2), h3(:,3));
     end
+    fprintf('pos_ik:  %f %f %f\n\n', h3(end,:));
 end
 
 clear maxL
